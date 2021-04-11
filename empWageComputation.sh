@@ -36,16 +36,27 @@ then
 		echo $workHours
 	}
 
+
+
+
+	functoin calDailyWage ( )
+	{
+		local workers=$1
+		wage=$(($workHOurs*$empRatePerHr))
+		echo $wage
+	}
+
 	while [[ $totalWorkHours -lt $Max_Hrs_In_Month && $totalWorkingDays -lt $Num_Working_Days ]]
         do
 		((totalWorkingDays++))
                 workHours="$( getWorkingHrs $((RANDOM%3)) )"
 		totalWorkHours=$(( $totalWorkHours + $workHours ))
+		empDailyWage[$totalWorkingDays]="$( calDailyWage $workHours )"
 	done
 
-	totalSalary=$(($totalWorkHours*$empRatePerHr));
+	totalSalary=$((calDAilyWage * $totalWorkHours))
 
-	echo $totalSalary
+	echo "Daily wage " ${empDAilyWage[@]}
 
 else
         echo "Employee is Absent"
