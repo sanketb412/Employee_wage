@@ -20,8 +20,6 @@ then
 	totalEmpHrs=0;
 	totalWorkingDays=0;
 
-	while [[ $totalEmpHrs -lt $Max_Hrs_In_Month && $totalWorkingDays -lt $Num_Working_Days ]]
-	do
 	function getWorkingHrs( )
 	{
 		case $1 in
