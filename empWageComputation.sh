@@ -13,21 +13,33 @@ then
 	#UC2
 	isFullTime=1;
 	isPartTime=2;
+	Max_Hrs_In_Month=100;
+	Num_Working_Days=20;
 	empRatePerHr=20;
-	empCheck=$((RANDOM%3));
 
-	case $empCheck in
-		$isFullTime)
-			empHrs=8
-			;;
-		$isPartTIme)
-			empHrs=4
-			;;
-	esac
+	totalEmpHrs=0;
+	totalWorkingDays=0;
 
-	salary=$(($empHrs*$empRatePerHr*20));
+	while [[ $totalEmpHrs -lt $Max_Hrs_In_Month && $totalWorkingDays -lt $Num_Working_Days ]]
+	do
+		((totalWorkingDays++))
+		empCheck=$((RANDOM%3));
+		case $empCheck in
+			$isFullTime)
+				empHrs=8
+				;;
+			$isPartTIme)
+				empHrs=4
+				;;
+			*)
+				empHrs=0
+				;;
+		esac
+		totalEmpHrs=$(($totalEmpHrs*$empHrs));
+	done
+	totalSalary=$(($totalEmpHrs*$empRatePerHr));
 
-	echo $salary
+	echo $totalSalary
 
 else
         echo "Employee is Absent"
